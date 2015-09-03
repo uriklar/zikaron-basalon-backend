@@ -37,6 +37,7 @@ GEM
     mime-types (2.6.1)
     minitest (5.8.0)
     rack (1.5.5)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.1.8)
@@ -70,12 +71,16 @@ GEM
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2015.6)
+      tzinfo (>= 1.0.0)
 
 PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  rack-cors
   rails (= 4.1.8)
   rails-api
   spring
   sqlite3
+  tzinfo-data
