@@ -13,6 +13,11 @@ gem 'sqlite3'
 gem 'tzinfo-data'
 gem 'rack-cors'
 
+gem 'byebug'
+
+gem 'active_model_serializers', '~> 0.8.3' # NOTE: not the 0.9
+gem 'devise'
+
 
 
 # To use ActiveModel has_secure_password

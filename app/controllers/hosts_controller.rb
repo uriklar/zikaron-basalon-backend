@@ -1,5 +1,5 @@
 class HostsController < ApplicationController
-  before_action :set_host, only: [:show, :update, :destroy]
+  before_action :set_host, only: [:update, :destroy]
 
   # GET /hosts
   # GET /hosts.json
@@ -12,6 +12,10 @@ class HostsController < ApplicationController
   # GET /hosts/1
   # GET /hosts/1.json
   def show
+    @host = Host.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    @host = Host.new
+  ensure
     render json: @host
   end
 
@@ -54,6 +58,6 @@ class HostsController < ApplicationController
     end
 
     def host_params
-      params.require(:host).permit(:first_name, :last_name, :email, :address, :phone, :survivor_needed, :strangers_allowed, :max_guests, :free_text, :event_date)
+      params.require(:host).permit(:first_name, :last_name, :email, :address, :phone, :survivor_needed, :strangers_allowed, :max_guests, :free_text, :event_date, :user_id)
     end
 end
