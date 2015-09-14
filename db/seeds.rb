@@ -5,10 +5,29 @@
 #
 #   cities = City.create([{ name=> 'Chicago' }, { name=> 'Copenhagen' }])
 #   Mayor.create
+User.destroy_all
+users = User.create([
+    { 
+        email: "user1@mailinator.com",
+        password: "1234.com",
+        password_confirmation: "1234.com"
+    },
+    { 
+        email: "user2@mailinator.com",
+        password: "1234.com",
+        password_confirmation: "1234.com"
+    },
+    { 
+        email: "user3@mailinator.com",
+        password: "1234.com",
+        password_confirmation: "1234.com"
+    }
+])
+
 Host.destroy_all
 hosts = Host.create([
     {
-        "email"=> "Maya.lachovich@gmail.com",
+        "user_id"=> users[0].id,
         "phone"=> "0527738447",
         "address"=> "איינשטיין 29, רעננה, ישראל",
         "max_guests"=> 0,
@@ -21,7 +40,7 @@ hosts = Host.create([
         "lng"=> 34.8830608000001
     },
     {
-        "email"=> "arnon@kastina.co.il",
+        "user_id"=> users[1].id,
         "phone"=> "0523112137",
         "address"=> "שלום עליכם, תל אביב יפו, ישראל",
         "max_guests"=> 20,
@@ -34,7 +53,7 @@ hosts = Host.create([
         "lng"=> 34.7695493
     },
     {
-        "email"=> "maya.sender@idomoo.com",
+        "user_id"=> users[2].id,
         "phone"=> "054-7722573",
         "address"=> "החרש 4, הוד השרון, ישראל",
         "max_guests"=> 15,

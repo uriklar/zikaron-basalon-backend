@@ -1,5 +1,8 @@
 class HostsController < ApplicationController
-  before_action :set_host, only: [:update, :destroy]
+  before_action :set_host, only: [:update, :destroy, :show]
+  before_action :authorize_to_view_or_edit_host, only: [:update, :show]
+  before_filter :authenticate_user_from_token!, only: [:update, :show]
+  
 
   # GET /hosts
   # GET /hosts.json
@@ -12,10 +15,6 @@ class HostsController < ApplicationController
   # GET /hosts/1
   # GET /hosts/1.json
   def show
-    @host = Host.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    @host = Host.new
-  ensure
     render json: @host
   end
 
@@ -34,8 +33,6 @@ class HostsController < ApplicationController
   # PATCH/PUT /hosts/1
   # PATCH/PUT /hosts/1.json
   def update
-    @host = Host.find(params[:id])
-
     if @host.update(host_params)
       head :no_content
     else
@@ -54,10 +51,17 @@ class HostsController < ApplicationController
   private
 
     def set_host
-      @host = Host.find(params[:id])
+      @host = Host.find_by_user_id(params[:id])
     end
 
     def host_params
       params.require(:host).permit(:first_name, :last_name, :email, :address, :phone, :survivor_needed, :strangers_allowed, :max_guests, :free_text, :event_date, :user_id)
+    end
+
+    def authorize_to_view_or_edit_host
+      auth_token = request.headers['Authorization']
+      unless @host.user && @host.user.access_token == auth_token
+        authentication_error
+      end
     end
 end
