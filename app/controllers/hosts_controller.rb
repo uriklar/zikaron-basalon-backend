@@ -52,6 +52,7 @@ class HostsController < ApplicationController
 
     def set_host
       @host = Host.find_by_user_id(params[:id])
+      render json: {  }, status: :precondition_required if @host.nil?    
     end
 
     def host_params

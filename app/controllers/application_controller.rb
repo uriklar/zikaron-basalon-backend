@@ -11,14 +11,6 @@ class ApplicationController < ActionController::API
 	    end
 	 end
 
-	def current_user
-		@current_user ||= User.find_by_access_token(auth_token)
-	end
-
-	def current_user? auth_token
-		current_user.access_token == auth_token
-	end
-
 	 private
 
 	  def authenticate_with_auth_token auth_token 
