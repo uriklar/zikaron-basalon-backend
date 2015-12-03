@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :requests, except: [:new, :edit]
+  resources :guests, except: [:new, :edit]
   devise_for :users, only: []
   resources :hosts, except: [:new, :edit]
   resource :login, only: [:create], controller: :sessions
