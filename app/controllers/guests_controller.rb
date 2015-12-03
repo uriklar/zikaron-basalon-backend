@@ -1,44 +1,42 @@
 class GuestsController < ApplicationController
-  before_action :set_guest, only: [:show, :edit, :update, :destroy]
-
-  respond_to :html
+  before_action :set_guest, only: [:show, :update, :destroy]
 
   def index
     @guests = Guest.all
-    respond_with(@guests)
+    render json: @guests
   end
 
   def show
-    respond_with(@guest)
-  end
-
-  def new
-    @guest = Guest.new
-    respond_with(@guest)
-  end
-
-  def edit
+    render json: @guest
   end
 
   def create
     @guest = Guest.new(guest_params)
-    @guest.save
-    respond_with(@guest)
+    if @guest.save
+      render json: @guest, status: :created, location: @guest
+    else
+      render json: @guest.errors, status: :unprocessable_entity
+    end
   end
 
   def update
-    @guest.update(guest_params)
-    respond_with(@guest)
+    if @guest.update(guest_params)
+      head :no_content
+    else
+      render json: @guest.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
     @guest.destroy
-    respond_with(@guest)
+
+    head :no_content
   end
 
   private
     def set_guest
       @guest = Guest.find(params[:id])
+      render json: {  }, status: :precondition_required if @guest.nil?
     end
 
     def guest_params

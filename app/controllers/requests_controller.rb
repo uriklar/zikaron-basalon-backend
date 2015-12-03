@@ -1,39 +1,36 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:show, :edit, :update, :destroy]
-
-  respond_to :html
+  before_action :set_request, only: [:show, :update, :destroy]
 
   def index
-    @requests = Request.all
-    respond_with(@requests)
+    @requests = Guest.all
+    render json: @requests
   end
 
   def show
-    respond_with(@request)
-  end
-
-  def new
-    @request = Request.new
-    respond_with(@request)
-  end
-
-  def edit
+    render json: @request
   end
 
   def create
     @request = Request.new(request_params)
-    @request.save
-    respond_with(@request)
+    if @request.save
+      render json: @request, status: :created, location: @request
+    else
+      render json: @request.errors, status: :unprocessable_entity
+    end
   end
 
   def update
-    @request.update(request_params)
-    respond_with(@request)
+    if @request.update(request_params)
+      head :no_content
+    else
+      render json: @request.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
     @request.destroy
-    respond_with(@request)
+
+    head :no_content
   end
 
   private
