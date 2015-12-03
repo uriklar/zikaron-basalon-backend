@@ -51,7 +51,7 @@ class HostsController < ApplicationController
   private
 
     def set_host
-      @host = Host.find_by_user_id(params[:id])
+      @host = Host.find(params[:id])
       render json: {  }, status: :precondition_required if @host.nil?    
     end
 
@@ -61,7 +61,9 @@ class HostsController < ApplicationController
 
     def authorize_to_view_or_edit_host
       auth_token = request.headers['Authorization']
-      unless @host.user && @host.user.access_token == auth_token
+      user = User.find_by_access_token(auth_token)
+      Rails.logger.info user
+      unless user && (user.admin || user.access_token == auth_token)
         authentication_error
       end
     end
