@@ -21,6 +21,12 @@ users = User.create([
         email: "user3@mailinator.com",
         password: "1234.com",
         password_confirmation: "1234.com"
+    },
+    {
+        email: "admin@mailinator.com",
+        password: "1234.com",
+        password_confirmation: "1234.com",
+        admin: true
     }
 ])
 
@@ -64,5 +70,37 @@ hosts = Host.create([
         "survivor_needed"=> false,
         "lat"=> 32.1324472,
         "lng"=> 34.8987391000001
+    }
+])
+
+Guest.destroy_all
+guests = Guest.create([
+    {
+        email: "guest1@mailinator.com",
+        phone: "12345",
+        first_name: "Guest1",
+        last_name: "Guest1"
+    },
+    {
+        email: "guest2@mailinator.com",
+        phone: "12345",
+        first_name: "Guest2",
+        last_name: "Guest2"
+    }
+])
+
+Request.destroy_all
+requests = Request.create([
+    {
+        host_id: hosts[0].id,
+        guest_id: guests[0].id
+    },
+    {
+        host_id: hosts[0].id,
+        guest_id: guests[1].id
+    },
+    {
+        host_id: hosts[1].id,
+        guest_id: guests[0].id
     }
 ])
