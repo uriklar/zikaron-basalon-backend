@@ -3,15 +3,17 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :validatable
 
-   after_create :update_access_token!  
+  belongs_to :meta, polymorphic: true
 
-   validates :email, presence: true, uniqueness: true
+  after_create :update_access_token!  
 
-   private
+  validates :email, presence: true, uniqueness: true
 
-   def update_access_token!
-     self.access_token = "#{self.id}:#{Devise.friendly_token}"
-     save
-   end
+  private
+
+  def update_access_token!
+   self.access_token = "#{self.id}:#{Devise.friendly_token}"
+   save
+  end
 
 end

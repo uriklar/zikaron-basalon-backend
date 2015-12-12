@@ -4,6 +4,7 @@ class CreateRequests < ActiveRecord::Migration
       t.integer :host_id
       t.integer :guest_id
       t.integer :num_of_people
+      t.string :status, default: 'pending'
 
       t.timestamps
     end

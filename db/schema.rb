@@ -11,42 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203032249) do
+ActiveRecord::Schema.define(version: 20151203010740) do
 
   create_table "guests", force: true do |t|
-    t.string   "email"
-    t.string   "phone"
-    t.string   "first_name"
-    t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "hosts", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
     t.string   "address"
-    t.string   "phone"
-    t.boolean  "survivor_needed"
     t.boolean  "strangers_allowed"
     t.integer  "max_guests"
     t.text     "free_text"
-    t.date     "event_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "event_datetime"
     t.float    "lat"
     t.float    "lng"
-    t.integer  "user_id"
+    t.text     "accessibility"
+    t.string   "org_name"
+    t.string   "org_role"
+    t.boolean  "hosted_in_past"
+    t.boolean  "profile_public"
+    t.integer  "survivor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "requests", force: true do |t|
     t.integer  "host_id"
     t.integer  "guest_id"
     t.integer  "num_of_people"
+    t.string   "status",        default: "pending"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status",        default: "pending"
   end
 
   create_table "users", force: true do |t|
@@ -63,11 +59,16 @@ ActiveRecord::Schema.define(version: 20151203032249) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "access_token"
-    t.string   "username"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone"
     t.boolean  "admin",                  default: false
+    t.integer  "meta_id"
+    t.string   "meta_type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["meta_id", "meta_type"], name: "index_users_on_meta_id_and_meta_type"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

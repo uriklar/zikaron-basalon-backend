@@ -1,16 +1,19 @@
 class CreateHosts < ActiveRecord::Migration
   def change
     create_table :hosts do |t|
-      t.string :first_name
-      t.string :last_name
-      t.string :email
       t.string :address
-      t.string :phone
-      t.boolean :survivor_needed
       t.boolean :strangers_allowed
       t.integer :max_guests
       t.text :free_text
-      t.date :event_date
+      t.datetime :event_datetime
+      t.float :lat  
+      t.float :lng
+      t.text :accessibility
+      t.string :org_name
+      t.string :org_role
+      t.boolean :hosted_in_past
+      t.boolean :profile_public
+      t.integer :survivor_id
 
       t.timestamps
     end
