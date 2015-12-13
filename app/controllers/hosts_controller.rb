@@ -8,7 +8,6 @@ class HostsController < ApplicationController
   # GET /hosts.json
   def index
     @hosts = Host.all
-
     render json: @hosts
   end
 
@@ -62,7 +61,6 @@ class HostsController < ApplicationController
     def authorize_to_view_or_edit_host
       auth_token = request.headers['Authorization']
       user = User.find_by_access_token(auth_token)
-      Rails.logger.info user
       unless user && (user.admin || user.access_token == auth_token)
         authentication_error
       end

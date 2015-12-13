@@ -6,7 +6,7 @@ describe "Hosts API" do
 
       get "/hosts", {}, { "Accept" => "application/json" }
 
-      expect(response.status).to eq 200
+      expect(response).to be_success
 
       body = JSON.parse(response.body)
       hosts = body["hosts"]
@@ -14,6 +14,32 @@ describe "Hosts API" do
 
       expect(host_addresses).to match_array(["Shpinoza 11, Tel Aviv",
                                            "Katzanelson 96, Givaataym"])
+    end
+  end
+
+  describe "GET /hosts/:id" do
+    it "fails if user is not correct user" do
+      h = FactoryGirl.create :host, address: "Shpinoza 11, Tel Aviv"
+
+      get "/hosts/#{h.id}", {}, { "Accept" => "application/json" }
+
+      expect(response.status).to eq 401
+    end
+
+    it "returns host if user is an admin" do
+      h = FactoryGirl.create :host, address: "Shpinoza 11, Tel Aviv"
+      admin = FactoryGirl.create :user, admin: true
+
+      get "/hosts/#{h.id}", {}, { 
+        "Accept" => "application/json", 
+        "Authorization" => admin.access_token
+      }
+
+      expect(response).to be_success
+
+      body = JSON.parse(response.body)
+      host = body["host"]
+      expect(host["address"]).to eq("Shpinoza 11, Tel Aviv")
     end
   end
 end

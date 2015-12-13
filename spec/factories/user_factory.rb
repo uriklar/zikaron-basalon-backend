@@ -3,6 +3,6 @@ FactoryGirl.define do
     email                  { Faker::Internet.email }
     password               { "supersecret" }
     password_confirmation  { "supersecret" }
-    association :meta
+    admin 								 { false }
   end
 end
