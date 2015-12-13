@@ -61,7 +61,7 @@ class HostsController < ApplicationController
     def authorize_to_view_or_edit_host
       auth_token = request.headers['Authorization']
       user = User.find_by_access_token(auth_token)
-      unless user && (user.admin || user.access_token == auth_token)
+      unless user && (user.admin || user.access_token == @host.user.access_token)
         authentication_error
       end
     end
