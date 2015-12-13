@@ -18,6 +18,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'factory_girl_rails'
 require 'rails_helper'
+require 'support/request_helpers'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -44,6 +45,7 @@ RSpec.configure do |config|
   end
 
   config.include FactoryGirl::Syntax::Methods
+  config.include Requests::JsonHelpers, type: :request
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
