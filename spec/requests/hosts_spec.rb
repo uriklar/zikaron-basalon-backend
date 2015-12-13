@@ -44,6 +44,27 @@ describe "Hosts API" do
     end
   end
 
-  
+  describe "POST /hosts" do
+    it "creates a host" do
+      host_params = {
+        host: {
+          address: "Shpinoza 11, Tel Aviv",
+          user_attributes: {
+            email: "uriklar@gmail.com",
+            password: "supersecret",
+            password_confirmation: "supersecret"
+          }
+        }
+      }.to_json
+
+      post "/hosts", host_params, 
+                     request_headers.merge({"Content-Type" => "application/json"})
+
+      expect(response.status).to eq 201 # created
+      h = Host.first
+      expect(h.address).to eq "Shpinoza 11, Tel Aviv"
+      expect(h.user.access_token).to be
+    end
+  end
   
 end
