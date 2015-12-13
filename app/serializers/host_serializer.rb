@@ -1,5 +1,5 @@
 class HostSerializer < ActiveModel::Serializer
-  attributes :first_name, :last_name, :email, :address, :phone, :survivor_needed, :strangers_allowed, :max_guests, :free_text, :event_date, :user_id
+  attributes :address, :strangers_allowed, :max_guests, :free_text, :event_datetime
 
   has_many :requests
 end

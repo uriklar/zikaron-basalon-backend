@@ -56,7 +56,7 @@ class HostsController < ApplicationController
     end
 
     def host_params
-      params.require(:host).permit(:first_name, :last_name, :email, :address, :phone, :survivor_needed, :strangers_allowed, :max_guests, :free_text, :event_date, :user_id)
+      params.require(:host).permit(:address, :strangers_allowed, :max_guests, :free_text, :event_datetime)
     end
 
     def authorize_to_view_or_edit_host
