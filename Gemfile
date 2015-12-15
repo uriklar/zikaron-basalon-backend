@@ -17,6 +17,8 @@ gem 'byebug'
 
 gem 'active_model_serializers', '~> 0.8.3' # NOTE: not the 0.9
 gem 'devise'
+gem 'figaro' # for environment variables
+gem 'sendgrid-ruby' # sendgrid integration
 
 group :test do
   gem "rspec-rails"
