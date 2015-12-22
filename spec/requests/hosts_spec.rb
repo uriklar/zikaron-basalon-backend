@@ -52,7 +52,8 @@ describe "Hosts API" do
           user_attributes: {
             email: "uriklar@gmail.com",
             password: "supersecret",
-            password_confirmation: "supersecret"
+            password_confirmation: "supersecret",
+            first_name: "Uri"
           }
         }
       }.to_json

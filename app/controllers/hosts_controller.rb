@@ -23,6 +23,7 @@ class HostsController < ApplicationController
     @host = Host.new(host_params)
 
     if @host.save
+      #ZbMailer.registration(@host.user.id)
       render json: @host, status: :created, location: @host
     else
       render json: @host.errors, status: :unprocessable_entity
