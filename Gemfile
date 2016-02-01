@@ -19,6 +19,7 @@ gem 'active_model_serializers', '~> 0.8.3' # NOTE: not the 0.9
 gem 'devise', '>= 3.5.5'
 gem 'figaro' # for environment variables
 gem 'sendgrid-ruby' # sendgrid integration
+gem 'rack-cors', :require => 'rack/cors'
 
 group :test do
   gem "rspec-rails"
