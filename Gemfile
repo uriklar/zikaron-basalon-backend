@@ -16,7 +16,7 @@ gem 'rack-cors'
 gem 'byebug'
 
 gem 'active_model_serializers', '~> 0.8.3' # NOTE: not the 0.9
-gem 'devise'
+gem 'devise', '>= 3.5.5'
 gem 'figaro' # for environment variables
 gem 'sendgrid-ruby' # sendgrid integration
 

@@ -34,7 +34,7 @@ GEM
     bcrypt (3.1.10-x86-mingw32)
     builder (3.2.2)
     byebug (6.0.2)
-    devise (3.4.1)
+    devise (3.5.6)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -64,6 +64,7 @@ GEM
     multipart-post (2.0.0)
     orm_adapter (0.5.0)
     pg (0.18.4)
+    pg (0.18.4-x86-mingw32)
     rack (1.5.5)
     rack-cors (0.4.0)
     rack-test (0.6.3)
@@ -124,7 +125,7 @@ GEM
       thread_safe (~> 0.1)
     tzinfo-data (1.2015.6)
       tzinfo (>= 1.0.0)
-    warden (1.2.3)
+    warden (1.2.6)
       rack (>= 1.0)
 
 PLATFORMS
@@ -134,7 +135,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.8.3)
   byebug
-  devise
+  devise (>= 3.5.5)
   factory_girl_rails
   faker
   figaro
