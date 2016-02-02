@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203010740) do
+ActiveRecord::Schema.define(version: 20160202184713) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "cities", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "countries", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "guests", force: true do |t|
     t.datetime "created_at"
@@ -19,19 +34,24 @@ ActiveRecord::Schema.define(version: 20151203010740) do
   end
 
   create_table "hosts", force: true do |t|
+    t.boolean  "hosted_before"
     t.string   "address"
-    t.boolean  "strangers_allowed"
-    t.integer  "max_guests"
+    t.boolean  "public"
     t.text     "free_text"
-    t.datetime "event_datetime"
+    t.boolean  "survivor_needed"
+    t.date     "event_date"
+    t.string   "event_time"
     t.float    "lat"
     t.float    "lng"
-    t.text     "accessibility"
+    t.integer  "floor"
+    t.boolean  "elevator"
+    t.boolean  "stairs"
     t.string   "org_name"
     t.string   "org_role"
-    t.boolean  "hosted_in_past"
-    t.boolean  "profile_public"
     t.integer  "survivor_id"
+    t.integer  "city_id"
+    t.integer  "country_id"
+    t.string   "language"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -67,8 +87,8 @@ ActiveRecord::Schema.define(version: 20151203010740) do
     t.string   "meta_type"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["meta_id", "meta_type"], name: "index_users_on_meta_id_and_meta_type"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["meta_id", "meta_type"], name: "index_users_on_meta_id_and_meta_type", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

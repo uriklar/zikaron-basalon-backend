@@ -20,7 +20,13 @@ class HostsController < ApplicationController
   # POST /hosts
   # POST /hosts.json
   def create
+    country = Country.where(name: country_param).first_or_create
+    city = City.where(name: city_param).first_or_create
+    user = User.find(user_id_param)
     @host = Host.new(host_params)
+    @host.city_id = city.id
+    @host.country_id = country.id
+    @host.user = user
 
     if @host.save
       #ZbMailer.registration(@host.user.id)
@@ -57,9 +63,21 @@ class HostsController < ApplicationController
 
     def host_params
       params.require(:host)
-            .permit(:address, :strangers_allowed, :max_guests,
-                    :free_text, :event_datetime, 
-                    user_attributes: [ :id, :email, :password, :password_confirmation ])
+            .permit(:hosted_before, :address, :public, :free_text, :survivor_needed,
+                    :event_date, :event_time, :lat, :lng, :floor, :elevator, :stairs,
+                    :org_name, :org_role, :survivor_id, :language)
+    end
+
+    def country_param
+      params.require(:host).permit(:country)[:country]
+    end
+
+    def city_param
+      params.require(:host).permit(:city)[:city]
+    end
+
+    def user_id_param
+      params.require(:host).permit(:user_id)[:user_id]
     end
 
     def authorize_to_view_or_edit_host
