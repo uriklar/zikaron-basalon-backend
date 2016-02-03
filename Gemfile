@@ -20,6 +20,7 @@ gem 'devise', '>= 3.5.5'
 gem 'figaro' # for environment variables
 gem 'sendgrid-ruby' # sendgrid integration
 gem 'rack-cors', :require => 'rack/cors'
+gem 'newrelic_rpm'
 
 group :test do
   gem "rspec-rails"

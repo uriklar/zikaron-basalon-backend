@@ -62,6 +62,7 @@ GEM
     mimemagic (0.3.0)
     minitest (5.8.4)
     multipart-post (2.0.0)
+    newrelic_rpm (3.14.0.305)
     orm_adapter (0.5.0)
     pg (0.18.4)
     pg (0.18.4-x86-mingw32)
@@ -139,6 +140,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   figaro
+  newrelic_rpm
   pg
   rack-cors
   rails (= 4.1.8)
