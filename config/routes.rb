@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :survivors, except: [:new, :edit]
   apipie
   resources :requests, except: [:new, :edit]
   resources :guests, except: [:new, :edit]
