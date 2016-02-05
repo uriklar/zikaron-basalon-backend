@@ -19,7 +19,6 @@ Host.destroy_all
 hosts = Host.create([
     {
         "address"=> "איינשטיין 29, רעננה, ישראל",
-        "max_guests"=> 0,
         "free_text"=> "אושפזה עם זיהום חריף יומיים לפני יום השואה ונאלצה לבטל",
         "strangers_allowed"=> false,
         "lat"=> 32.1839926,
