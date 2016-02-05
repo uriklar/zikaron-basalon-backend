@@ -51,7 +51,7 @@ hosts = Host.create([
 		language: "אנגלית",
 		survivor_needed: true,
 		public: true,
-		free_text: "I have a big dog",
+		free_text: "Testing automatic deploy",
 		user_id: users[1].id
 	},
 	{
