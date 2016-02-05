@@ -6,6 +6,7 @@ class HostsController < ApplicationController
 
   # GET /hosts
   # GET /hosts.json
+  api!
   def index
     @hosts = Host.all
     render json: @hosts
@@ -13,12 +14,34 @@ class HostsController < ApplicationController
 
   # GET /hosts/1
   # GET /hosts/1.json
+  api!
   def show
     render json: @host
   end
 
   # POST /hosts
   # POST /hosts.json
+  api! description "Create host"
+  param :host, Hash, required: true do
+    param :hosted_before, :bool, required: true
+    param :address, String, required: true
+    param :public, :bool, required: true, desc: "Is the event visible to the public"
+    param :free_text, String
+    param :survivor_needed, :bool, required: true
+    param :event_date, String, required: true
+    param :event_time, String, required: true
+    param :lat, :number, required: true
+    param :lng, :number, required: true
+    param :floor, :number
+    param :elevator, :bool, required: true
+    param :stairs, :bool, required: true
+    param :org_name, String
+    param :org_role, String
+    param :language, String, required: true
+    param :city, String, required: true
+    param :country, String, required: true
+    param :user_id, :number, required: true
+  end
   def create
     @host = Host.new(host_params)
     if @host.save
@@ -31,6 +54,7 @@ class HostsController < ApplicationController
 
   # PATCH/PUT /hosts/1
   # PATCH/PUT /hosts/1.json
+  api!
   def update
     if @host.update(host_params)
       head :no_content
@@ -41,6 +65,7 @@ class HostsController < ApplicationController
 
   # DELETE /hosts/1
   # DELETE /hosts/1.json
+  api!
   def destroy
     @host.destroy
 

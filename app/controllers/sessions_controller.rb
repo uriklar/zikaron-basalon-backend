@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
 
     # POST /login
+    api! description "Login"
+    param :email, String, required: true
+    param :password, String, required: true
     def create
       @user = User.find_for_database_authentication(email: params[:email])
       return invalid_login_attempt unless @user

@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
     # POST /v1/users
-    # Creates an user
+    api! description "User signup"
+    param :user, Hash, required: true do
+      param :email, String, required: true
+      param :password, String, required: true
+      param :password_confirmation, String, required: true
+    end
     def create
       @user = User.new user_params
 

@@ -9,11 +9,8 @@ gem 'spring', :group => :development
 
 
 gem 'pg'
-
 gem 'tzinfo-data'
-gem 'rack-cors'
-
-gem 'byebug'
+gem 'byebug', :group => :development
 
 gem 'active_model_serializers', '~> 0.8.3' # NOTE: not the 0.9
 gem 'devise', '>= 3.5.5'
@@ -21,6 +18,7 @@ gem 'figaro' # for environment variables
 gem 'sendgrid-ruby' # sendgrid integration
 gem 'rack-cors', :require => 'rack/cors'
 gem 'newrelic_rpm'
+gem 'apipie-rails'
 
 group :test do
   gem "rspec-rails"

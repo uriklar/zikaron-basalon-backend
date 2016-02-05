@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  apipie
   resources :requests, except: [:new, :edit]
   resources :guests, except: [:new, :edit]
   devise_for :users, only: []
