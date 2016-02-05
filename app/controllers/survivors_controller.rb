@@ -15,7 +15,7 @@ class SurvivorsController < ApplicationController
   param :survivor, Hash, required: true do
     param :name, String, required: true
     param :phone, String, required: true
-    param address, String, required: true
+    param :address, String, required: true
   end
   def create
     @survivor = Survivor.new(survivor_params)
@@ -36,7 +36,7 @@ class SurvivorsController < ApplicationController
 
   def destroy
     @survivor.destroy
-    
+
     render json: @survivor
   end
 
