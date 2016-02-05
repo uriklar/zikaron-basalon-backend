@@ -6,6 +6,9 @@
 #   cities = City.create([{ name=> 'Chicago' }, { name=> 'Copenhagen' }])
 #   Mayor.create
 
+City.destroy_all
+cities = City.create([{ name: 'Tel Aviv' }, { name: 'Kfar Saba' }])
+
 User.destroy_all
 users = User.create([
 	{
@@ -81,7 +84,9 @@ guests = Guest.create([
 			email: "guest1@mailinator.com",
 			phone: "12345",
 			first_name: "Guest1",
-			last_name: "Guest1"
+			last_name: "Guest1",
+			password: "1234.com",
+			password_confirmation: "1234.com"
 		}
 	},
 	{
@@ -89,7 +94,35 @@ guests = Guest.create([
 			email: "guest2@mailinator.com",
 			phone: "12345",
 			first_name: "Guest2",
-			last_name: "Guest2"
+			last_name: "Guest2",
+			password: "1234.com",
+			password_confirmation: "1234.com"
+		}
+	}
+])
+
+CommunityLeader.destroy_all
+community_leaders = CommunityLeader.create([
+	{
+		city: "Tel Aviv",
+		user_attributes: {
+			email: "cl1@mailinator.com",
+			phone: "12345",
+			first_name: "CommunityLeader1",
+			last_name: "CommunityLeader1",
+			password: "1234.com",
+			password_confirmation: "1234.com"
+		}
+	},
+	{
+		city: "Kfar Saba",
+		user_attributes: {
+			email: "cl2@mailinator.com",
+			phone: "12345",
+			first_name: "CommunityLeader2",
+			last_name: "CommunityLeader2",
+			password: "1234.com",
+			password_confirmation: "1234.com"
 		}
 	}
 ])

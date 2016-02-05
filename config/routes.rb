@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :community_leaders, except: [:new, :edit]
   resources :survivors, except: [:new, :edit]
   apipie
   resources :requests, except: [:new, :edit]
