@@ -30,11 +30,10 @@ class HostsController < ApplicationController
     param :survivor_needed, :bool, required: true
     param :event_date, String, required: true
     param :event_time, String, required: true
-    param :lat, :number, required: true
-    param :lng, :number, required: true
+    param :lat, String, required: true
+    param :lng, String, required: true
     param :floor, :number
     param :elevator, :bool, required: true
-    param :stairs, :bool, required: true
     param :org_name, String
     param :org_role, String
     param :language, String, required: true
@@ -82,7 +81,7 @@ class HostsController < ApplicationController
     def host_params
       params.require(:host)
             .permit(:hosted_before, :address, :public, :free_text, :survivor_needed,
-                    :event_date, :event_time, :lat, :lng, :floor, :elevator, :stairs,
+                    :event_date, :event_time, :lat, :lng, :floor, :elevator, :contacted,
                     :org_name, :org_role, :survivor_id, :language, :city, :country, :user_id)
     end
 

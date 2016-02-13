@@ -48,7 +48,6 @@ hosts = Host.create([
 		lng: "34.8830608000001",
 		floor: 2,
 		elevator: false,
-		stairs: true,
 		event_date: "4.5.2016",
 		event_time: "20:00",
 		language: "אנגלית",
@@ -66,7 +65,6 @@ hosts = Host.create([
 		lng: "34.7695493",
 		floor: 2,
 		elevator: false,
-		stairs: true,
 		event_date: "4.5.2016",
 		event_time: "20:00",
 		language: "עברית",
@@ -104,7 +102,7 @@ guests = Guest.create([
 CommunityLeader.destroy_all
 community_leaders = CommunityLeader.create([
 	{
-		city: "Tel Aviv",
+		cities: "Tel Aviv, Kfar Saba",
 		user_attributes: {
 			email: "cl1@mailinator.com",
 			phone: "12345",
@@ -115,7 +113,7 @@ community_leaders = CommunityLeader.create([
 		}
 	},
 	{
-		city: "Kfar Saba",
+		cities: "Kfar Saba",
 		user_attributes: {
 			email: "cl2@mailinator.com",
 			phone: "12345",

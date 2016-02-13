@@ -3,6 +3,7 @@ class Host < ActiveRecord::Base
 	belongs_to :country
 	belongs_to :city
 	has_many :requests
+  belongs_to :survivor
 
   def city=(val)
     city = City.where(name: val).first_or_create

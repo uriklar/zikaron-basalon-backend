@@ -1,3 +1,3 @@
 class CommunityLeaderSerializer < ActiveModel::Serializer
-  attributes :id, :city_id
+  attributes :id, :email
 end

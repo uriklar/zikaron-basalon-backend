@@ -69,7 +69,6 @@ describe "Hosts API" do
           lng: "54.6467",
           floor: 2,
           elevator: false,
-          stairs: true,
           event_date: "4.5.2016",
           event_time: "20:00",
           language: "English",

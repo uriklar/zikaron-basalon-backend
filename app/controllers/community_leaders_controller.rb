@@ -21,7 +21,7 @@ class CommunityLeadersController < ApplicationController
 
   def destroy
     @community_leader.destroy
-    render hson: @community_leader
+    render json: @community_leader
   end
 
   private
@@ -30,6 +30,6 @@ class CommunityLeadersController < ApplicationController
     end
 
     def community_leader_params
-      params.require(:community_leader).permit(:city)
+      params.require(:community_leader).permit(:email, :cities)
     end
 end
