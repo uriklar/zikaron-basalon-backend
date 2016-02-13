@@ -19,6 +19,14 @@ class CommunityLeadersController < ApplicationController
     end
   end
 
+  def update
+    if @community_leader.update(community_leader_params)
+      render json: @community_leader
+    else
+      render json: @community_leader.errors, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @community_leader.destroy
     render json: @community_leader

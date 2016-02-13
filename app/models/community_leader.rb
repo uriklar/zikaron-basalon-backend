@@ -6,9 +6,14 @@ class CommunityLeader < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
 
 	def cities=(cities)
-    cities.split(',').each do |city_name|
+    city_names = cities.split(',')
+    city_names.each do |city_name|
       city = City.where(name: city_name).first_or_create
-      self.cities.push(city)
+      self.cities.push(city) unless self.cities.include?(city)
+    end
+
+    self.cities.each do |city|
+      self.cities.delete(city) unless city_names.include?(city.name)
     end
   end
 
