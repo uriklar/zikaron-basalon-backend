@@ -7,7 +7,6 @@ class UsersController < ApplicationController
       param :password_confirmation, String, required: true
     end
     def create
-      pp request.headers['Authorization']
       @user = User.new user_params
 
       if @user.save
