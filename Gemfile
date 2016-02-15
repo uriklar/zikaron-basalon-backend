@@ -19,6 +19,7 @@ gem 'sendgrid-ruby' # sendgrid integration
 gem 'rack-cors', :require => 'rack/cors'
 gem 'newrelic_rpm'
 gem 'apipie-rails'
+gem 'rails_12factor'
 
 group :test do
   gem "rspec-rails"
